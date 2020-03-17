@@ -71,12 +71,11 @@ if __name__ == '__main__':
     print ("Confusion matrix")
     print(confusion_matrix(testLabels,predictions))
 
-
     # SVM
     clf = SVC(kernel='rbf', gamma=0.001)
     clf.fit(trainData, trainLabels)
     predictions = clf.predict(testData)
-
+    
     print("SVM Results")
     print(classification_report(predictions, testLabels))
     svm_Precision, svm_Recall, svm_Fscore, support = metrics.precision_recall_fscore_support(testLabels, predictions)
@@ -84,7 +83,6 @@ if __name__ == '__main__':
     print("SVM Accuracy is:" + str(svm_Acc))
     print ("Confusion matrix")
     print(confusion_matrix(testLabels,predictions))
-
 
     # Random Forest
     print("Below Random Forests")
@@ -142,9 +140,8 @@ if __name__ == '__main__':
     #sys.exit()
 
     # MLP
-
     # Alpha is the regularization term, smaller alpha, less underfitting 
-    mlp = MLPClassifier(activation='relu', hidden_layer_sizes=(200, 200), alpha = 0.5, max_iter=300)
+    mlp = MLPClassifier(activation='relu', hidden_layer_sizes=(200, 200), alpha = 0.4, max_iter=400)
     mlp.fit(trainData, trainLabels)
     predictions = mlp.predict(testData)
 
@@ -155,6 +152,7 @@ if __name__ == '__main__':
     print(mlp_Acc)
 
     #sys.exit()
+    
     # Draw picture
     x = [a for a in range(0, 10)]
     plt.figure(figsize=(10, 6.5))
